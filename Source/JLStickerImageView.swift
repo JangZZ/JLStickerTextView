@@ -136,6 +136,19 @@ extension JLStickerImageView {
         }
     }
     
+    public func adjust(toBounds bounds:CGRect, _ view: JLStickerLabelView) {
+        guard let labelTextView = view.labelTextView else {
+            return
+        }
+        
+        let textFrame = CGRect(x: 0, y: 0, width: bounds.width*0.90, height: bounds.height*0.50)
+        adjustFontSizeToFillRect(textFrame, view: view)
+        labelTextView.isUserInteractionEnabled = false
+        labelTextView.alignment = .center
+        labelTextView.setNeedsDisplay()
+        view.frame = CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height)
+    }
+    
     // MARK: -
     
     func cleanup() {
