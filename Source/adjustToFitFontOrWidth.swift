@@ -28,13 +28,13 @@ extension adjustFontSizeToFillRectProtocol {
         
         var tempFont = UIFont(name: labelTextView.fontName, size: labelTextView.fontSize)
         var copyTextAttributes = labelTextView.textAttributes
-        copyTextAttributes[NSAttributedStringKey.font] = tempFont
+        copyTextAttributes[NSAttributedString.Key.font] = tempFont
         var attributedText = NSAttributedString(string: labelTextView.text, attributes: copyTextAttributes)
         
         while stickerMinimumFontSize <= stickerMaximumFontSize {
             mid = stickerMinimumFontSize + (stickerMaximumFontSize - stickerMinimumFontSize) / 2
             tempFont = UIFont(name: labelTextView.fontName, size: CGFloat(mid))!
-            copyTextAttributes[NSAttributedStringKey.font] = tempFont
+            copyTextAttributes[NSAttributedString.Key.font] = tempFont
             attributedText = NSAttributedString(string: labelTextView.text, attributes: copyTextAttributes)
             
             difference = newBounds.height - attributedText.boundingRect(with: CGSize(width: newBounds.width - 24, height: CGFloat.greatestFiniteMagnitude), options: [.usesLineFragmentOrigin, .usesFontLeading], context: nil).height
@@ -79,5 +79,18 @@ extension adjustFontSizeToFillRectProtocol {
         viewFrame.size.width = w1 + 24
         viewFrame.size.height = h1 + 18
         view.bounds = viewFrame
+    }
+    
+    func adjust(toBounds bounds:CGRect, _ view: JLStickerLabelView) {
+        guard let labelTextView = view.labelTextView else {
+            return
+        }
+
+        let textFrame = CGRect(x: 0, y: 0, width: bounds.width*0.90, height: bounds.height*0.50)
+        adjustFontSizeToFillRect(textFrame, view: view)
+        labelTextView.isUserInteractionEnabled = false
+        labelTextView.alignment = .center
+        labelTextView.setNeedsDisplay()
+        view.frame = CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height)
     }
 }

@@ -47,6 +47,21 @@ public class JLStickerImageView: UIImageView, UIGestureRecognizerDelegate {
 //MARK: Functions
 extension JLStickerImageView {
     
+    public func addLabel(withText text: String) {
+        let labelView = JLStickerLabelView(frame: self.frame)
+        labelView.setupTextLabel()
+        labelView.delegate = self
+        labelView.showsContentShadow = false
+        labelView.hideEditingHandlers()
+        labelView.borderColor = UIColor.clear
+        labelView.labelTextView?.isEditable = false
+        labelView.labelTextView?.text = text
+        self.addSubview(labelView)
+        currentlyEditingLabel = labelView
+        adjustsWidthToFillItsContens(currentlyEditingLabel)
+        labels.append(labelView)
+    }
+    
     public func addLabel() {
         if let label: JLStickerLabelView = currentlyEditingLabel {
             label.hideEditingHandlers()

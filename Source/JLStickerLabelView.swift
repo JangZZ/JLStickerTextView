@@ -408,10 +408,10 @@ extension JLStickerLabelView {
         labelTextView?.clipsToBounds = true
         labelTextView?.delegate = self
         labelTextView?.backgroundColor = UIColor.clear
-        labelTextView?.tintColor = UIColor(red: 33, green: 45, blue: 59, alpha: 1)
+        labelTextView?.tintColor = UIColor.black
         labelTextView?.isScrollEnabled = false
         labelTextView?.isSelectable = true
-        labelTextView?.textContainerInset = UIEdgeInsetsMake(0, 0, 0, 0)
+        labelTextView?.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
     
     private func setupBorder() {
