@@ -11,7 +11,6 @@ import UIKit
 public class JLStickerImageView: UIImageView, UIGestureRecognizerDelegate {
     public var currentlyEditingLabel: JLStickerLabelView?
     fileprivate var labels: [JLStickerLabelView]!
-    private var renderedView: UIView!
     
     fileprivate lazy var tapOutsideGestureRecognizer: UITapGestureRecognizer! = {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(JLStickerImageView.tapOutside))
@@ -108,7 +107,7 @@ extension JLStickerImageView {
         
         self.cleanup()
         
-        UIGraphicsBeginImageContextWithOptions(self.bounds.size, true, 0)
+        UIGraphicsBeginImageContextWithOptions(self.bounds.size, false, 0)
         guard let context = UIGraphicsGetCurrentContext() else { return nil }
         UIColor.clear.set()
         context.fill(self.bounds)

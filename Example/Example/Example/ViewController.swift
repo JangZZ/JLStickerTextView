@@ -71,7 +71,7 @@ class ViewController: UIViewController {
     @IBAction func onSaveImage(_ sender: UIBarButtonItem) {
         //render text on Image and save the Image
         let image = stickerView.renderContentOnView()
-        UIImageWriteToSavedPhotosAlbum(image!, nil, nil, nil)
+        stickerView.image = image
 
     }
     
