@@ -45,6 +45,15 @@ public class JLAttributedTextView: UITextView {
         }
     }
     
+    public var strokeColor: UIColor {
+        didSet {
+            textAttributes[NSAttributedStringKey.strokeColor] = strokeColor
+            textAttributes[NSAttributedStringKey.strokeWidth] = (-2.0 as AnyObject)
+            self.attributedText = NSAttributedString(string: self.text, attributes: textAttributes)
+            
+        }
+    }
+    
     //MARK: -
     //MARK: forgroundColor
     
