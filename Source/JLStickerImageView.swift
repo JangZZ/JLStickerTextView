@@ -109,6 +109,13 @@ extension JLStickerImageView {
         self.cleanup()
         
         UIGraphicsBeginImageContextWithOptions(self.bounds.size, true, 0)
+        guard let context = UIGraphicsGetCurrentContext() else { return nil }
+        UIColor.clear.set()
+        context.fill(self.bounds)
+        self.isOpaque = false
+        self.layer.isOpaque = false
+        self.backgroundColor = UIColor.clear
+        self.layer.backgroundColor = UIColor.clear.cgColor
         
         self.layer.render(in: UIGraphicsGetCurrentContext()!)
         let img = UIGraphicsGetImageFromCurrentImageContext()
