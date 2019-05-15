@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol JLStickerImageViewDelegate: class {
+public protocol JLStickerImageViewDelegate: class {
     func labelViewDidSelected(_ label: JLStickerLabelView)
     func labelViewDidHideEditingHandles()
 }
@@ -16,7 +16,7 @@ protocol JLStickerImageViewDelegate: class {
 public class JLStickerImageView: UIImageView, UIGestureRecognizerDelegate {
     public var currentlyEditingLabel: JLStickerLabelView?
     
-    weak var delegate: JLStickerImageViewDelegate?
+    public weak var delegate: JLStickerImageViewDelegate?
     
     fileprivate var labels: [JLStickerLabelView]!
     
