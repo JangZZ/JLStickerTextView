@@ -8,8 +8,16 @@
 
 import UIKit
 
+protocol JLStickerImageViewDelegate: class {
+    func labelViewDidSelected(_ label: JLStickerLabelView)
+    func labelViewDidHideEditingHandles()
+}
+
 public class JLStickerImageView: UIImageView, UIGestureRecognizerDelegate {
     public var currentlyEditingLabel: JLStickerLabelView?
+    
+    weak var delegate: JLStickerImageViewDelegate?
+    
     fileprivate var labels: [JLStickerLabelView]!
     
     fileprivate lazy var tapOutsideGestureRecognizer: UITapGestureRecognizer! = {
@@ -198,7 +206,7 @@ extension JLStickerImageView: JLStickerLabelViewDelegate {
     
     public func labelViewDidHideEditingHandles(_ label: JLStickerLabelView) {
         currentlyEditingLabel = nil
-        
+        delegate?.labelViewDidHideEditingHandles()
     }
     
     public func labelViewDidStartEditing(_ label: JLStickerLabelView) {
@@ -219,7 +227,7 @@ extension JLStickerImageView: JLStickerLabelViewDelegate {
         for labelItem in labels {
             labelItem.hideEditingHandlers()
         }
-        label.showEditingHandles()
+        delegate?.labelViewDidSelected(label)
     }
     
 }
