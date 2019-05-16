@@ -86,7 +86,7 @@ public class JLStickerLabelView: UIView {
             rotateView?.isUserInteractionEnabled = enableRotate
         }
     }
-    public var enableMoveRestriction: Bool = true {
+    public var enableMoveRestriction: Bool = false {
         didSet {
             
         }
@@ -171,7 +171,7 @@ public class JLStickerLabelView: UIView {
         self.closeView!.addGestureRecognizer(closeTap)
         self.rotateView!.addGestureRecognizer(panRotateGesture)
         
-        self.enableMoveRestriction = true
+        self.enableMoveRestriction = false
         self.enableClose = true
         self.enableRotate = true
         self.showsContentShadow = true
