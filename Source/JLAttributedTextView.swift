@@ -48,7 +48,14 @@ public class JLAttributedTextView: UITextView {
     public var strokeColor: UIColor = .black {
         didSet {
             textAttributes[NSAttributedString.Key.strokeColor] = strokeColor
-            textAttributes[NSAttributedString.Key.strokeWidth] = (-2.0 as AnyObject)
+            self.attributedText = NSAttributedString(string: self.text, attributes: textAttributes)
+            
+        }
+    }
+    
+    public var strokeWidth: Float = -3 {
+        didSet {
+            textAttributes[NSAttributedString.Key.strokeWidth] = (strokeWidth as AnyObject)
             self.attributedText = NSAttributedString(string: self.text, attributes: textAttributes)
             
         }
