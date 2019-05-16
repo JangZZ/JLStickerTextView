@@ -14,14 +14,7 @@ public protocol JLStickerImageViewDelegate: class {
 }
 
 public class JLStickerImageView: UIImageView, UIGestureRecognizerDelegate {
-    public var currentlyEditingLabel: JLStickerLabelView? {
-        didSet {
-            for labelItem in labels {
-                labelItem.hideEditingHandlers()
-            }
-        }
-    }
-    
+    public var currentlyEditingLabel: JLStickerLabelView?
     public weak var delegate: JLStickerImageViewDelegate?
     
     fileprivate var labels: [JLStickerLabelView]!
