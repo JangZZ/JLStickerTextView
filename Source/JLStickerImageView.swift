@@ -11,6 +11,7 @@ import UIKit
 public protocol JLStickerImageViewDelegate: class {
     func labelViewDidSelected(_ label: JLStickerLabelView)
     func labelViewDidHideEditingHandles()
+    func labelViewDidClose()
 }
 
 public class JLStickerImageView: UIImageView, UIGestureRecognizerDelegate {
@@ -74,14 +75,14 @@ extension JLStickerImageView {
         }
         
         let labelFrame = CGRect(x: self.bounds.midX - CGFloat(arc4random()).truncatingRemainder(dividingBy: 20),
-                                    y: self.bounds.midY - CGFloat(arc4random()).truncatingRemainder(dividingBy: 20),
-                                    width: 60, height: 50)
+                                y: self.bounds.midY - CGFloat(arc4random()).truncatingRemainder(dividingBy: 20),
+                                width: 60, height: 50)
         let labelView = JLStickerLabelView(frame: labelFrame)
         labelView.setupTextLabel()
         labelView.delegate = self
         labelView.showsContentShadow = false
         labelView.borderColor = UIColor.white
-//        labelView.labelTextView?.fontName = "Roboto-Medium"
+        //        labelView.labelTextView?.fontName = "Roboto-Medium"
         self.addSubview(labelView)
         currentlyEditingLabel = labelView
         adjustsWidthToFillItsContens(currentlyEditingLabel!)
@@ -101,6 +102,7 @@ extension JLStickerImageView {
         let labelView = JLStickerLabelView(frame: labelFrame)
         labelView.setupImageLabel()
         labelView.showsContentShadow = false
+        labelView.delegate = self
         labelView.borderColor = UIColor.white
         self.addSubview(labelView)
         currentlyEditingLabel = labelView
@@ -195,7 +197,7 @@ extension JLStickerImageView: JLStickerLabelViewDelegate {
     }
     
     public func labelViewDidClose(_ label: JLStickerLabelView) {
-        
+        delegate?.labelViewDidClose()
     }
     
     public func labelViewDidShowEditingHandles(_ label: JLStickerLabelView) {
