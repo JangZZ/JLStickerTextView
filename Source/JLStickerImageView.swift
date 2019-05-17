@@ -55,6 +55,10 @@ public class JLStickerImageView: UIImageView, UIGestureRecognizerDelegate {
 extension JLStickerImageView {
     
     public func addLabel(withText text: String) {
+        if let label: JLStickerLabelView = currentlyEditingLabel {
+            label.hideEditingHandlers()
+        }
+        
         let labelView = JLStickerLabelView(frame: self.frame)
         labelView.setupTextLabel()
         labelView.delegate = self
