@@ -204,8 +204,8 @@ extension JLStickerImageView: JLStickerLabelViewDelegate {
     }
     
     public func labelViewDidHideEditingHandles(_ label: JLStickerLabelView) {
-        currentlyEditingLabel = nil
         delegate?.labelViewDidHideEditingHandles()
+        currentlyEditingLabel = nil
     }
     
     public func labelViewDidStartEditing(_ label: JLStickerLabelView) {
