@@ -95,6 +95,14 @@ extension JLStickerImageView {
         self.addGestureRecognizer(tapOutsideGestureRecognizer)
     }
     
+    public func removeAllLabel() {
+        labels.forEach {
+            $0.removeFromSuperview()
+        }
+        
+        labels = []
+    }
+    
     public func addImage() {
         if let label: JLStickerLabelView = currentlyEditingLabel {
             label.hideEditingHandlers()
